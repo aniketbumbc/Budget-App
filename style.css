@@ -32,8 +32,8 @@ body {
 **********************************************/
 
 .top {
-    height: 40vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(back.png);
+    height:50vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(budget-image.jpg);
     background-size: cover;
     background-position: center;
     position: relative;
@@ -45,7 +45,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #fff;
+    color:rgb(255, 230, 0);
 }
 
 .budget__title {
@@ -71,7 +71,7 @@ body {
 
 .budget__income {
     margin-bottom: 10px;
-    background-color: #28B9B5;
+    background-color: rgb(69, 185, 40);
 }
 
 .budget__expenses {
