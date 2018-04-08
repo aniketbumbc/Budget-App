@@ -12,3 +12,23 @@ var budgetController = (function() {
             }
         }
 })();
+
+var  UIController =(function(){
+
+
+
+})();
+
+
+
+var controller =(function(budgetCtrl, UIctrl){
+
+var z = budgetCtrl.publicTest(26);
+
+return{
+    anotherpublicTest:function(){
+        console.log(z);
+    }
+}
+
+})(budgetController,UIController); 
