@@ -2,39 +2,54 @@ var budgetController = (function () {
 
     //function constructor 
 
-    var Expense = function(id, description, value) {
+    var Expense = function (id, description, value) {
         this.id = id;
         this.description = description;
         this.value = value;
     };
 
-    var Income = function(id, description, value) {
+    var Income = function (id, description, value) {
         this.id = id;
         this.description = description;
         this.value = value;
     };
 
-   
-        var data = {
-            allItems:{
-                exp:[],
-                inc:[]
-            },
-            totals:{
-                exp:0,
-                inc:0
-            }
-           
-            
+    var data = {
+        allItems: {
+            exp: [],
+            inc: []
+        },
+        totals: {
+            exp: 0,
+            inc: 0
         }
+    }; 
+
+    return{
+        addItem:function(type,des,val){
+            var newItem ,ID;
+
+            //create new ID 
+
+            ID = data.allItems[type][data.allItems[type].lenght - 1].id + 1;
 
 
+            // create new item based on inc and exp
+            if(type === 'exp'){                
+           newItem = new Expense(ID, des, val);
+            }else if (type === 'inc'){
+                newItem = new Income(ID, des, val);
+            }
+            
+            //push to DS
+            data.allItems[type].push(newItem);
 
-
+            //return new element
+            return newItem;
+        }
+    };
 
 })();
-
-
 
 
 
@@ -64,10 +79,6 @@ var UIController = (function () {
 })();
 
 
-
-
-
-
 //app controller
 
 var controller = (function (budgetCtrl, UIctrl) {
@@ -84,14 +95,14 @@ var controller = (function (budgetCtrl, UIctrl) {
         });
     };
 
-
-   
     var ctrlAddItem = function () {
         // get filed input data
 
         var input = UIctrl.getinput();
 
         //add the item to the budget controller
+
+        budgetCtrl.addItem(input.type, input.discription, input.value);
 
         //add the item to the UI
 
@@ -101,9 +112,9 @@ var controller = (function (budgetCtrl, UIctrl) {
     };
 
     return {
-        init: function(){
+        init: function () {
             console.log("App started Here");
-             setupEventListener();             
+            setupEventListener();
         }
     }
 
