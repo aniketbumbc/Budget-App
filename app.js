@@ -31,7 +31,13 @@ var budgetController = (function () {
 
             //create new ID 
 
-            ID = data.allItems[type][data.allItems[type].lenght - 1].id + 1;
+            if(data.allItems[type].lenght>0){
+                ID = data.allItems[type][data.allItems[type].lenght - 1].id + 1;
+            }else{
+                ID = 0;
+            }
+
+           
 
 
             // create new item based on inc and exp
@@ -46,7 +52,13 @@ var budgetController = (function () {
 
             //return new element
             return newItem;
-        }
+        },
+
+      
+            getData:function(){
+                console.log(data);
+            }
+        
     };
 
 })();
@@ -96,13 +108,16 @@ var controller = (function (budgetCtrl, UIctrl) {
     };
 
     var ctrlAddItem = function () {
+
+        var input, newItem;
+
         // get filed input data
 
-        var input = UIctrl.getinput();
+         input = UIctrl.getinput();
 
         //add the item to the budget controller
 
-        budgetCtrl.addItem(input.type, input.discription, input.value);
+         newItem = budgetCtrl.addItem(input.type, input.discription, input.value);
 
         //add the item to the UI
 
